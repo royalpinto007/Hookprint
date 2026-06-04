@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f4f7fb;
+  --foreground: #081120;
+  --surface: rgba(255, 255, 255, 0.78);
+  --surface-strong: rgba(255, 255, 255, 0.92);
+  --line: rgba(148, 163, 184, 0.24);
+  --line-strong: rgba(14, 165, 233, 0.22);
+  --glow-a: rgba(56, 189, 248, 0.22);
+  --glow-b: rgba(251, 191, 36, 0.16);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0a0f18;
+    --foreground: #f6f9ff;
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "IBM Plex Sans", "Segoe UI", Arial, Helvetica, sans-serif;
+  background-image:
+    radial-gradient(circle at top left, var(--glow-a), transparent 26%),
+    radial-gradient(circle at 85% 18%, var(--glow-b), transparent 22%),
+    linear-gradient(180deg, #f8fbff, #eef4fb 36%, #fffaf5);
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(14, 165, 233, 0.2);
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+.site-frame {
+  position: relative;
+  isolation: isolate;
+}
+
+.site-frame::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.35) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent 72%);
+  z-index: -1;
+}
+
+.glass-panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+}
+
+.glass-panel-strong {
+  background: var(--surface-strong);
+  border: 1px solid var(--line-strong);
+  backdrop-filter: blur(18px);
+}
+
+.section-kicker {
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
 }
