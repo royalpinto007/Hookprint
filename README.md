@@ -1,6 +1,18 @@
 # Hookprint
 
-Hookprint is a free local-first web app that breaks down viral short-form reels into a structured "Viral DNA" report.
+> Paste a reel. Get its Viral DNA: the hook formula, the scene structure, why it worked, and 10 ways to remix it.
+
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![Next.js](https://img.shields.io/badge/Next.js-App%20Router-black.svg)
+![Local-first](https://img.shields.io/badge/local--first-no%20API%20key-brightgreen.svg)
+
+Hookprint is a free, local-first web app that reverse-engineers a viral short-form video into a structured report you can act on. No account, no API key required: the analysis engine runs deterministically in your browser, and an optional hosted model just sharpens the output.
+
+<!-- Add a short screen-recording GIF of a reel going in and the Viral DNA card coming out (public/demo.gif). Lead the README with it. -->
+
+## Why
+
+Everyone tells creators to "study what goes viral," but studying means rewatching a clip 20 times and guessing. Hookprint turns that guesswork into a repeatable teardown: same clip in, the same structured breakdown out, so you can copy the pattern instead of the video.
 
 ## Stack
 
@@ -85,3 +97,11 @@ OPENROUTER_MODEL=meta-llama/llama-3.3-70b-instruct:free
 ```
 
 If the provider is missing, fails, or rate-limits, Hookprint automatically falls back to the deterministic local TypeScript engine.
+
+## Optional transcript extraction
+
+Upload a clip on the Analyze page and click **Extract transcript** to auto-transcribe it via Groq Whisper. This needs a `GROQ_API_KEY` (the same key as above); set `GROQ_TRANSCRIBE_MODEL` to override the default `whisper-large-v3-turbo`. Files are capped at 25MB. Without a key, paste the transcript manually — everything else still works locally.
+
+## Theme
+
+The UI ships with a dark, neon-accented theme and a header toggle for light mode. Your choice persists in `localStorage` and is applied before first paint (no flash).
